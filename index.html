@@ -1,1 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Uma 🎉</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Poppins, sans-serif;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  color:#fff;
+  text-align:center;
+  overflow-x:hidden;
+}
+
+h1{
+  margin-top:30px;
+  font-size:40px;
+  animation:glow 2s infinite alternate;
+}
+@keyframes glow{
+  from{ text-shadow:0 0 10px #fff; }
+  to{ text-shadow:0 0 30px #ffd54f; }
+}
+
+button{
+  padding:12px 20px;
+  border:none;
+  border-radius:30px;
+  background:#ff4081;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+  margin:10px;
+}
+
+/* Cake */
+.cake{
+  font-size:90px;
+  cursor:pointer;
+  animation:pulse 1.5s infinite;
+}
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.1);}
+  100%{transform:scale(1);}
+}
+
+/* Gallery */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:10px;
+  padding:10px;
+}
+.gallery img{
+  width:100%;
+  border-radius:12px;
+}
+
+/* Hidden Image */
+#hiddenImage{
+  display:none;
+  margin-top:20px;
+}
+#hiddenImage img{
+  width:250px;
+  border-radius:15px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* Letter */
+#letter{
+  display:none;
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:#fff;
+  color:#000;
+  padding:20px;
+  border-radius:15px;
+  width:300px;
+}
+
+/* Password box */
+#passwordBox{
+  display:none;
+}
+
+/* Video */
+#secretVideo{
+  display:none;
+  width:90%;
+  max-width:500px;
+  border-radius:12px;
+  margin-top:10px;
+}
+
+/* Fireworks */
+.firework{
+  position:fixed;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  animation:explode 1s forwards;
+}
+@keyframes explode{
+  0%{transform:scale(1);opacity:1;}
+  100%{transform:scale(15);opacity:0;}
+}
+
+/* Confetti */
+.confetti{
+  position:fixed;
+  width:8px;
+  height:8px;
+  top:-10px;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  to{transform:translateY(100vh);}
+}
+
+/* Hearts */
+.heart{
+  position:fixed;
+  bottom:-10px;
+  font-size:20px;
+  animation:rise 5s linear infinite;
+}
+@keyframes rise{
+  to{transform:translateY(-110vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎂 Happy Birthday Uma 🎂</h1>
+<h2>My Lovely Sister 💖</h2>
+
+<button onclick="start()">Start Celebration 🎁</button>
+
+<div class="cake" onclick="cutCake()">🎂</div>
+
+<h2>📸 Memories</h2> 
+<div class="gallery">
+  <img src="C:\index.html\image.jpg\uma-1.jpeg">
+  <img src="C:\index.html\image.jpg\WhatsApp Image 2026-04-21 at 3.15.03 PM.jpeg">
+  <img src="C:\index.html\image.jpg\WhatsApp Image 2026-04-21 at 3.15.08 PM.jpeg">
+</div>
+
+<!-- Hidden Image Section -->
+<h2>🌟 Hidden Surprise Image</h2>
+<button onclick="showImage()">Reveal Image 🎉</button>
+<div id="hiddenImage">
+  <img src="C:\index.html\image.jpg\WhatsApp Image 2026-04-23 at 11.26.32 PM.jpeg" alt="Hidden Surprise">
+</div>
+
+<!-- 🔐 Secret Section -->
+<h2>🔐 Secret Surprise</h2>
+<button onclick="openPasswordBox()">Unlock Surprise 🎁</button>
+
+<div id="passwordBox">
+  <input type="password" id="passwordInput" placeholder="Enter Password 💖"
+  style="padding:10px; border-radius:10px; border:none;">
+  <br>
+  <button onclick="checkPassword()">Submit</button>
+  <p id="errorMsg"></p>
+</div>
+
+<video id="secretVideo" controls>
+  <source src="C:\index.html\video.mp4\WhatsApp Video 2026-04-24 at 12.35.02 AM.mp4" type"video/mp4">
+  <source src="C:\index.html\video.mp4\WhatsApp Video 2026-04-23 at 11.26.08 PM.mp4" type="video/mp4">
+</video>
+
+
+
+
+<h2>💌 Special Letter</h2>
+<button onclick="openLetter()">Open</button>
+
+<div id="letter">
+  <h3>To Uma 💖</h3>
+  <p>
+  Happy Birthday Uma 💕<br><br>
+  You are my happiness and strength.<br>
+  Stay happy always ✨<br><br>
+  Love you forever ❤️
+  </p>
+  <button onclick="closeLetter()">Close</button>
+</div>
+
+<audio id="music" loop>
+  <source src="C:\index.html\music.mp3\the_mountain-happy-birthday-508020.mp3">
+</audio>
+
+<script>
+
+// Start celebration
+function start(){
+  document.getElementById('music').play();
+  confetti();
+  fireworks();
+  hearts();
+}
+
+// Cake
+function cutCake(){
+  alert("🎉 Happy Birthday Uma 💖 🎉");
+  fireworks();
+}
+
+// Show hidden image
+function showImage(){
+  document.getElementById('hiddenImage').style.display='block';
+}
+
+// Password system
+function openPasswordBox(){
+  document.getElementById('passwordBox').style.display='block';
+}
+
+function checkPassword(){
+  const correctPassword = "uma123"; // change here
+  const input = document.getElementById('passwordInput').value;
+  const msg = document.getElementById('errorMsg');
+  const video = document.getElementById('secretVideo');
+
+  if(input === correctPassword){
+    msg.innerHTML="🎉 Surprise Unlocked!";
+    video.style.display="block";
+    video.play();
+    document.getElementById('passwordBox').style.display='none';
+  }else{
+    msg.innerHTML="❌ Wrong Password!";
+  }
+}
+
+
+// Fireworks
+function fireworks(){
+  for(let i=0;i<30;i++){
+    let f=document.createElement('div');
+    f.className='firework';
+    f.style.background=`hsl(${Math.random()*360},100%,50%)`;
+    f.style.top=Math.random()*100+'%';
+    f.style.left=Math.random()*100+'%';
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),1000);
+  }
+}
+
+// Confetti
+function confetti(){
+  for(let i=0;i<60;i++){
+    let c=document.createElement('div');
+    c.className='confetti';
+    c.style.left=Math.random()*100+'%';
+    c.style.background=`hsl(${Math.random()*360},100%,50%)`;
+    c.style.animationDuration=(2+Math.random()*3)+'s';
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),4000);
+  }
+}
+
+// Hearts
+function hearts(){
+  for(let i=0;i<10;i++){
+    let h=document.createElement('div');
+    h.className='heart';
+    h.innerHTML='💖';
+    h.style.left=Math.random()*100+'%';
+    h.style.animationDuration=(3+Math.random()*3)+'s';
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),5000);
+  }
+}
+
+// Letter
+function openLetter(){
+  document.getElementById('letter').style.display='block';
+}
+function closeLetter(){
+  document.getElementById('letter').style.display='none';
+}
+
+</script>
+
+</body>
+</html>
 
